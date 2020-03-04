@@ -3,6 +3,7 @@ dotenv.config();
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
+const cors = require('cors')
 var aylien = require("aylien_textapi");
 
 var alyenAPI = new aylien({
@@ -12,6 +13,7 @@ var alyenAPI = new aylien({
 
 const app = express()
 
+app.use(cors())
 app.use(express.static('dist'))
 
 console.log(__dirname)
@@ -21,7 +23,7 @@ app.get('/', function(req, res) {
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8080, function() {
+app.listen(8081, function() {
     console.log('Example app listening on port 8080!')
 })
 
