@@ -19,17 +19,21 @@
     </header>
 
     <main>
-        <section>
-            <form class="" onsubmit="return Client.handleSubmit(event)">
-                <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+        <div id="formstyle">
+            <h1>News Analyzer</h1>
+            <form>
+                <label for="article">Enter An Article URL:</label>
+                <input id="article" type="text" name="article" value="" placeholder="https:www.example.com">
+                <span id="errors" aria-live="polite"></span>
+                <input id="button" type="submit" name="" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
             </form>
             <section>
-
-                <section>
-                    <strong>Form Results:</strong>
-                    <div id="results"></div>
-                </section>
+                <h2>Analysis:</h2>
+                <h3>Category: <span id="category"></span></h3>
+                <h3>Polarity: <span id="polarity"></span></h3>
+                <h3>Subjectivity: <span id="subjectivity"></span></h3>
+            </section>
+        </div>
     </main>
 
     <footer>

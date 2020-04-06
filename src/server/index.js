@@ -3,6 +3,7 @@ dotenv.config();
 var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
+const bodyParser = require('body-parser')
 const cors = require('cors')
 var aylien = require("aylien_textapi");
 
@@ -12,7 +13,7 @@ var alyenAPI = new aylien({
 });
 
 const app = express()
-
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 app.use(express.static('dist'))
 
@@ -31,10 +32,21 @@ app.get('/test', function(req, res) {
     res.send(mockAPIResponse)
 })
 
-alyenAPI.sentiment({
-    'text': 'John is a very good football player!'
-}, function(error, response) {
-    if (error === null) {
-        console.log(response);
-    }
+app.post("/sentiment", (req, res) => {
+    textapi.sentiment({ 'url': req.body.url, 'mode': 'document' }, (error, response) => {
+        if (error == null) {
+            console.log(response);
+            res.send(response)
+        } else {
+            console.log('there was an error:', error)
+        }
+    });
 });
+
+// alyenAPI.sentiment({
+//     'text': 'John is a very good football player!'
+// }, function(error, response) {
+//     if (error === null) {
+//         console.log(response);
+//     }
+// });
