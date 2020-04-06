@@ -36,11 +36,18 @@ app.get('/test', function(req, res) {
 app.post('/sentiment', (req, res) => {
     console.log(req.body.url);
     alyenAPI.sentiment({
-        url: req.body.url
-    }, function(error, response) {
-        console.log(response)
-        res.send(response);
-    });
+            url: req.body.url
+        },
+        (error, response) => {
+            if (error === null) {
+                console.log(response)
+                res.send(response);
+            } else {
+                console.log(error);
+                res.status(500).send("Something went wrong!");
+            }
+
+        });
 });
 
 // alyenAPI.sentiment({

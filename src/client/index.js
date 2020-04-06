@@ -7,5 +7,5 @@ import './styles/header.scss'
 
 export {
     urlValidate,
-    handleSubmit
+    handleSubmit,
 }
