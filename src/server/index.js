@@ -32,21 +32,23 @@ app.get('/test', function(req, res) {
     res.send(mockAPIResponse)
 })
 
-app.post("/sentiment", (req, res) => {
-    alyenAPI.sentiment({ 'url': req.body.url, 'mode': 'document' }, (error, response) => {
-        if (error == null) {
-            console.log(response);
-            res.send(response)
-        } else {
-            console.log('there was an error:', error)
-        }
+//POST request
+app.post('/sentiment', (req, res) => {
+    console.log(req.body.url);
+    alyenAPI.sentiment({
+        url: req.body.url
+    }, function(error, response) {
+        console.log(response)
+        res.send(response);
     });
 });
 
 // alyenAPI.sentiment({
-//     'text': 'John is a very good football player!'
+//     'url': 'https://techcrunch.com/2015/07/16/microsoft-will-never-give-up-on-mobile/'
 // }, function(error, response) {
 //     if (error === null) {
 //         console.log(response);
+//     } else {
+//         console.log('there was an error:', error)
 //     }
 // });

@@ -4,42 +4,51 @@
 <head>
     <meta charset="utf-8">
     <title>Test</title>
-    <script type="text/javascript" src="../../../dist/main.js"></script>
 </head>
 
 <body>
 
     <header>
-        <div class="">
-            Logo
-        </div>
-        <div class="">
-            navigation
-        </div>
+        <h3>Udacity project</h3>
+        <h1>New Article Evaluation<br> with Natural Language Processing</h1>
     </header>
 
     <main>
-        <div id="formstyle">
-            <h1>News Analyzer</h1>
-            <form>
-                <label for="article">Enter An Article URL:</label>
-                <input id="article" type="text" name="article" value="" placeholder="https:www.example.com">
-                <span id="errors" aria-live="polite"></span>
-                <input id="button" type="submit" name="" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+        <section>
+            <form class="" onsubmit="return Client.handleSubmit(event)">
+                <legend>Below put in the URL for the article sentiment evaluation.</legend>
+                <input id="hyperlink" type="url" name="input" value="" placeholder="Use English webpage">
+                <input id="submit" type="submit" name="submit" value="Submit" onsubmit="return Client.handleSubmit(event)">
+                <!--onclick="return Client.handleSubmit(event)"-->
             </form>
-            <section>
-                <h2>Analysis:</h2>
-                <h3>Category: <span id="category"></span></h3>
-                <h3>Polarity: <span id="polarity"></span></h3>
-                <h3>Subjectivity: <span id="subjectivity"></span></h3>
-            </section>
-        </div>
+            <div id="results">
+                <strong>Analysis Results:</strong>
+                <table class="result">
+
+                    <tr>
+                        <td>Polarity</td>
+                        <td id="polarity"></td>
+                    </tr>
+                    <tr>
+                        <td>Subjectivity</td>
+                        <td id="subjectivity"></td>
+                    </tr>
+                </table>
+            </div>
     </main>
 
     <footer>
-        <p>This is a footer</p>
+        <a href="mailto:carmen39@gmail.com">@Carmen Chen</a>-Udacity FEND project
     </footer>
-
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
 </body>
 
 </html>
