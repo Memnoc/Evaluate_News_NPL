@@ -2,52 +2,65 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <meta charset="utf-8">
-    <title>Test</title>
+    <meta charset="utf-8" />
+    <title>Text evaluation</title>
+
 </head>
 
 <body>
-
     <header>
-        <h3>Udacity project</h3>
-        <h1>New Article Evaluation<br> with Natural Language Processing</h1>
     </header>
 
     <main>
         <section>
-            <form class="" onsubmit="return Client.handleSubmit(event)">
-                <legend>Below put in the URL for the article sentiment evaluation.</legend>
-                <input id="hyperlink" type="url" name="input" value="" placeholder="Use English webpage">
-                <input id="submit" type="submit" name="submit" value="Submit" onsubmit="return Client.handleSubmit(event)">
-                <!--onclick="return Client.handleSubmit(event)"-->
-            </form>
-            <div id="results">
-                <strong>Analysis Results:</strong>
-                <table class="result">
-
-                    <tr>
-                        <td>Polarity</td>
-                        <td id="polarity"></td>
-                    </tr>
-                    <tr>
-                        <td>Subjectivity</td>
-                        <td id="subjectivity"></td>
-                    </tr>
-                </table>
+            <div class="form">
+                <form onsubmit="return Client.sentimentApi(event)">
+                    <p id="intro">
+                        Type a short sentence or phrase
+                    </p>
+                    <input id="name" type="text" name="input" value="" placeholder="Your input" required>
+                    <input id="submitText" type="submit" name="submit" value="Submit" />
+                </form>
             </div>
+            <div class="form">
+                <form onsubmit="return Client.classifyApi(event)">
+                    <p id="intro">
+                        Insert an article url
+                    </p>
+                    <input id="name" type="text" name="input" value="" placeholder="Your input" required>
+                    <input id="submitUrl" type="submit" name="submit" value="Submit" />
+                </form>
+            </div>
+            <h2>Your input's rating is: </h2>
+            <div class="results">
+                <div id="polarity"></div>
+                <!-- <div id="subjectivity"></div><br> -->
+                <div id="polarity_confidence"></div>
+                <!-- <div id="subjectivity_confidence"></div><br> -->
+            </div>
+        </section>
     </main>
 
     <footer>
-        <a href="mailto:carmen39@gmail.com">@Carmen Chen</a>-Udacity FEND project
+        <p>Hooray!</p>
     </footer>
     <script>
-        // Check that service workers are supported
-        if ('serviceWorker' in navigator) {
-            // Use the window load event to keep the page load performant
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js');
-            });
-        }
+        //   if ("serviceWorker" in navigator) {
+        //     navigator.serviceWorker
+        //       .register("./service-worker.js")
+        //       .then(function(registration) {
+        //         console.log(
+        //           "ServiceWorker registration successful with scope: ",
+        //           registration.scope
+        //         );
+        //       })
+        //       .catch(function(err) {
+        //         //registration failed :(
+        //         console.log("ServiceWorker registration failed: ", err);
+        //       });
+        //   } else {
+        //     console.log("No service-worker on this browser");
+        //   }
     </script>
 </body>
 
