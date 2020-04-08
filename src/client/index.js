@@ -1,4 +1,4 @@
-// import { urlValidate } from './js/nameChecker'
+import { urlValidate } from './js/urlChecker'
 import { sentimentApi } from './js/formHandler'
 import { classifyApi } from './js/formHandler'
 
@@ -8,7 +8,7 @@ import './styles/form.scss'
 import './styles/header.scss'
 
 export {
-    // urlValidate,
+    urlValidate,
     sentimentApi,
     classifyApi
 

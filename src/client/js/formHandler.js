@@ -19,42 +19,56 @@ const postData = async(url = "", data = {}) => {
 
 async function sentimentApi(e) {
     e.preventDefault();
-    const userInput = document.getElementById("submitText").value;
-    const data = await postData("http://localhost:8081/sentiment", { userInput });
+    const userText = document.getElementById("submitText").value;
+    const data = await postData("http://localhost:8081/sentiment", { userText });
     console.log("Data from sentiment API in Front end: ", data);
-    updateUI(data);
+    updateSentimentUI(data);
 }
 
 async function classifyApi(e) {
     e.preventDefault();
-    const userInput = document.getElementById("submitUrl").value;
-    const data = await postData("http://localhost:8081/classify", { userInput });
+    const userUrl = document.getElementById("submitUrl").value;
+    const data = await postData("http://localhost:8081/classify", { userUrl });
     console.log("Data from classify API in Front end: ", data);
-    // updateUI(data);
+    updateClassifyUI(data);
 }
 
 
-const updateUI = async data => {
+const updateSentimentUI = async data => {
     try {
         const {
             polarity,
-            subjectivity,
             polarity_confidence,
-            subjectivity_confidence,
             text
         } = data;
         const pol = document.getElementById("polarity");
         const sub = document.getElementById("subjectivity");
         const polCon = document.getElementById("polarity_confidence");
         const subCon = document.getElementById("subjectivity_confidence");
+
+        const polarityConfidenceRounded = polarity_confidence.toFixed(3);
         const polarityCapitalized =
             polarity.charAt(0).toUpperCase() + polarity.slice(1);
-        const polarityConfidenceRounded = polarity_confidence.toFixed(3);
+
         pol.innerHTML = ` ${polarityCapitalized}, `;
-        // sub.innerHTML = `Subjectivity: ${subjectivity}.`;
-        polCon.innerHTML = `&nbsp with a confidence level of ${polarityConfidenceRounded}.`;
-        // subCon.innerHTML = `Subjectivity confidence: ${subjectivity_confidence}.`;
-        // userText.innerHMTL = `Your text: ${text}`;
+        polCon.innerHTML = `Confidence ${polarityConfidenceRounded}.`;
+    } catch (error) {
+        console.log("error", error);
+    }
+};
+
+const updateClassifyUI = async data => {
+    try {
+        const {
+            label,
+            confidence,
+            text
+        } = data.categories[0];
+        const classifyLabel = document.getElementById("label");
+        const classifyConfidence = document.getElementById("classify_confidence");
+
+        classifyLabel.innerHTML = `Article Label ${label}, `;
+        classifyConfidence.innerHTML = `Confidence ${confidence}.`;
     } catch (error) {
         console.log("error", error);
     }

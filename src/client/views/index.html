@@ -18,8 +18,8 @@
                     <p id="intro">
                         Type a short sentence or phrase
                     </p>
-                    <input id="name" type="text" name="input" value="" placeholder="Your input" required>
-                    <input id="submitText" type="submit" name="submit" value="Submit" />
+                    <input id="submitText" type="text" name="input" value="" placeholder="Your input" required>
+                    <input id="submitSentimentButton" type="submit" name="submit" value="Submit" />
                 </form>
             </div>
             <div class="form">
@@ -27,16 +27,19 @@
                     <p id="intro">
                         Insert an article url
                     </p>
-                    <input id="name" type="text" name="input" value="" placeholder="Your input" required>
-                    <input id="submitUrl" type="submit" name="submit" value="Submit" />
+                    <input id="submitUrl" type="text" name="input" value="" placeholder="Your input" required>
+                    <input id="submitClassifyButton" type="submit" name="submit" value="Submit" />
                 </form>
             </div>
-            <h2>Your input's rating is: </h2>
-            <div class="results">
+            <h2>Text sentiment: </h2>
+            <div class="sentiment-results">
                 <div id="polarity"></div>
-                <!-- <div id="subjectivity"></div><br> -->
                 <div id="polarity_confidence"></div>
-                <!-- <div id="subjectivity_confidence"></div><br> -->
+            </div>
+            <h2>Article classification: </h2>
+            <div class="classify-results">
+                <div id="label"></div>
+                <div id="classify_confidence"></div>
             </div>
         </section>
     </main>
