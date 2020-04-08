@@ -28,9 +28,17 @@ async function sentimentApi(e) {
 async function classifyApi(e) {
     e.preventDefault();
     const userUrl = document.getElementById("submitUrl").value;
-    const data = await postData("http://localhost:8081/classify", { userUrl });
-    console.log("Data from classify API in Front end: ", data);
-    updateClassifyUI(data);
+    if (Client.urlValidate(userUrl)) {
+        const data = await postData("http://localhost:8081/classify", { userUrl });
+        console.log("Data from classify API in Front end: ", data);
+        updateClassifyUI(data);
+
+    } else {
+        let please = "Please use a valid URL format - "
+        let example = 'Example: http://www.google.com'
+        alert(please.concat(example));
+    }
+
 }
 
 
