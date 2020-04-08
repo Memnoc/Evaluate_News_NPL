@@ -18,6 +18,7 @@ var textapi = new aylien({
     application_key: process.env.API_KEY
 });
 
+// POST route - sentiment API
 app.post("/sentiment", (req, res) => {
     textapi.sentiment({
             text: req.body.userText,
@@ -35,6 +36,7 @@ app.post("/sentiment", (req, res) => {
     );
 });
 
+// POST route - classify API
 app.post("/classify", (req, res) => {
     textapi.classify({
             url: req.body.userUrl
@@ -51,17 +53,6 @@ app.post("/classify", (req, res) => {
 
     );
 });
-
-// textapi.classify({
-//     url: 'https://www.nature.com/articles/d41586-020-00973-x'
-// }, function(error, response) {
-//     if (error === null) {
-//         response['categories'].forEach(function(c) {
-//             console.log(c);
-//         });
-//         console.log(response);
-//     }
-// });
 
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function() {
