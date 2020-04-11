@@ -3,7 +3,8 @@
  * @param {the API post route in src/server/index.js} url 
  * @param {the user input in frontend via a field} data 
  */
-const postRequest = async(url = "", data = {}) => {
+const getRequest = async(url = "", data = {}) => {
+    console.log("Get request...");
     const response = await fetch(url, {
         method: "POST",
         credentials: "same-origin",
@@ -25,7 +26,7 @@ const postRequest = async(url = "", data = {}) => {
 /**
  * SCOPE: 
  * capture the value in the usertext field
- * make an API call via postRequest() to the Alyen sentiment API
+ * make an API call via getRequest() to the Alyen sentiment API
  * update frontend via updateSentimentUI()
  * @param {anchor parameter to leverage the preventDefault() function} event 
  * https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
@@ -34,8 +35,8 @@ async function sentimentApi(event) {
     try {
         event.preventDefault();
         const userText = document.getElementById("submitText").value;
-        const data = await postRequest("http://localhost:8081/sentiment", { userText });
-        // console.log("Data from sentiment API in Front end: ", data);
+        const data = await getRequest("http://localhost:8081/sentiment", { userText });
+        console.log("Data from sentiment API in Front end: ", data.polarity);
         updateSentimentUI(data);
     } catch (error) {
         let please = "Please use a valid URL format\n"
@@ -47,7 +48,7 @@ async function sentimentApi(event) {
 /**
  * SCOPE: 
  * capture the value in the usertext field
- * make an API call via postRequest() to the Alyen sentiment API
+ * make an API call via getRequest() to the Alyen sentiment API
  * update frontend via updateClassifyUI()
  * @param {anchor parameter to leverage the preventDefault() function} event 
  * https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
@@ -56,7 +57,7 @@ async function classifyApi(event) {
     event.preventDefault();
     const userUrl = document.getElementById("submitUrl").value;
     if (Client.urlValidate(userUrl)) {
-        const data = await postRequest("http://localhost:8081/classify", { userUrl });
+        const data = await getRequest("http://localhost:8081/classify", { userUrl });
         // console.log("Data from classify API in Front end: ", data);
         updateClassifyUI(data);
     } else {

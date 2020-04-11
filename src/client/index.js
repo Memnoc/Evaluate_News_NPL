@@ -11,5 +11,4 @@ export {
     urlValidate,
     sentimentApi,
     classifyApi
-
 }

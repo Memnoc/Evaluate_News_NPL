@@ -3,6 +3,9 @@
  * @param {string} url A user-input URL
  * 
  */
+
+
+
 function urlValidate(url) {
     const reg = /^(https?:\/\/)?(\w+\.)?(\w+\.)(\w+)([\w\?\&\=\-]?)*(\/[\w\?\&\=\-]*)*$/g
     if (reg.test(url)) {
