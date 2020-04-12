@@ -1,10 +1,10 @@
 import { urlValidate } from './urlChecker'
 
 test('test valid url', () => {
-    const x = urlValidate('https://www.google.com');
-    expect(x).toBe(true);
+    const userInput = urlValidate('https://www.google.com');
+    expect(userInput).toBe(true);
 });
-test('test valid url', () => {
-    const x = urlValidate('fdsfsfs');
-    expect(x).toBe(false);
+test('test invalid url', () => {
+    const userInput = urlValidate('fdsfsfs');
+    expect(userInput).toBe(false);
 });

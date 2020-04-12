@@ -54,6 +54,24 @@ app.post("/classify", (req, res) => {
     );
 });
 
+// POST route - entity API
+app.post("/entity", (req, res) => {
+    textapi.entities({
+            text: req.body.userEntityText
+        },
+
+        (error, response) => {
+            if (error === null) {
+                console.log("Response from Aylien entity API: ", response);
+                res.send(response);
+            } else {
+                console.log(error);
+            }
+        }
+
+    );
+});
+
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function() {
     console.log("Example app listening on port 8081!");

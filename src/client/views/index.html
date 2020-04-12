@@ -13,33 +13,52 @@
 
     <main>
         <section>
+            <h1 class="page-title">Natural Language Processing (NPL) Analysis Tool</h1>
             <div class="form">
                 <form onsubmit="return Client.sentimentApi(event)">
                     <p id="intro">
-                        Type a short sentence or phrase
+                        Extract article sentiment date
                     </p>
-                    <input id="submitText" type="text" name="input" value="" placeholder="Your input" required>
+                    <input id="submitText" type="text" name="input" value="" placeholder="Paste the article text" required>
                     <input id="submitSentimentButton" type="submit" name="submit" value="Submit" />
                 </form>
             </div>
+            <br>
             <div class="form">
                 <form onsubmit="return Client.classifyApi(event)">
                     <p id="intro">
-                        Insert an article url
+                        Extract article classification data
                     </p>
-                    <input id="submitUrl" type="text" name="input" value="" placeholder="Your input" required>
+                    <input id="submitUrl" type="text" name="input" value="" placeholder="Paste the article URL" required>
                     <input id="submitClassifyButton" type="submit" name="submit" value="Submit" />
                 </form>
             </div>
-            <h2>Text sentiment: </h2>
+            <br>
+            <div class="form">
+                <form onsubmit="return Client.entityApi(event)">
+                    <p id="intro">
+                        Extract article entity data
+                    </p>
+                    <input id="submitEntityText" type="text" name="input" value="" placeholder="Paste the article text" required>
+                    <input id="submitClassifyButton" type="submit" name="submit" value="Submit" />
+                </form>
+            </div>
+            <br>
+            <h2 class="page-title">Analisys results</h2>
+            <h4>Text sentiment: </h4>
             <div class="sentiment-results">
                 <div id="polarity"></div>
                 <div id="polarity_confidence"></div>
             </div>
-            <h2>Article classification: </h2>
+            <h4>Article classification: </h4>
             <div class="classify-results">
                 <div id="label"></div>
                 <div id="classify_confidence"></div>
+            </div>
+            <h4>Article entities: </h4>
+            <div class="entity-results">
+                <div id="organization"></div>
+                <div id="date"></div>
             </div>
         </section>
     </main>
