@@ -8,12 +8,9 @@
  * @param {the user input in frontend via a field} data 
  */
 const postRequest = async(url = "", data = {}) => {
-    console.log("Post request called...");
     const response = await alyenApiCall(url, data);
-    console.log('receiving the response from the API', response);
     try {
         const newData = await response.json();
-        console.log('Extracting and returning JSON from response', newData);
         return newData;
     } catch (error) {
         console.log("error", error);
@@ -50,12 +47,10 @@ async function alyenApiCall(url, data) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
  */
 async function sentimentApi(event) {
-    console.log("sentiment API called...");
     try {
         event.preventDefault();
         const userText = document.getElementById("submitText").value;
         const data = await postRequest("http://localhost:8081/sentiment", { userText });
-        console.log("Data from sentiment API in Front end: ", data);
         updateSentimentUI(data);
     } catch (error) {
         alert("Please use a valid text format");
@@ -76,7 +71,6 @@ async function classifyApi(event) {
     const userUrl = document.getElementById("submitUrl").value;
     if (Client.urlValidate(userUrl)) {
         const data = await postRequest("http://localhost:8081/classify", { userUrl });
-        // console.log("Data from classify API in Front end: ", data);
         updateClassifyUI(data);
     } else {
         let please = "Please use a valid URL format\n"
@@ -94,14 +88,10 @@ async function classifyApi(event) {
  * https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault
  */
 async function entityApi(event) {
-    console.log("entity API called...");
     try {
         event.preventDefault();
         const userEntityText = document.getElementById("submitEntityText").value;
         const data = await postRequest("http://localhost:8081/entity", { userEntityText });
-        // Microsoft
-        // console.log("Data from entity API in Front end: ", data.entities.organization[0]);
-        // console.log("Data from entity API in Front end: ", data.entities);
         updateEntityUI(data);
     } catch (error) {
         alert("Please use a valid text format");
@@ -119,11 +109,11 @@ async function entityApi(event) {
  * @param {Variable to contain the API data} data 
  */
 function captureEntityFrontendData(data) {
-    const organization = data.entities.organization[0];
-    const date = data.entities.date[0];
-
     const textOrganization = document.getElementById("organization");
     const textDate = document.getElementById("date");
+
+    const organization = data.entities.organization[0];
+    const date = data.entities.date[0];
 
     textOrganization.innerHTML = `Organization: ${organization}, `;
     textDate.innerHTML = `Date: ${date}.`;
@@ -137,15 +127,13 @@ function captureEntityFrontendData(data) {
  * @param {variable} polarity_confidence 
  * @param {variable} polarity 
  */
-function sentimentFrontendData(polarity_confidence, polarity) {
-    console.log("sentimentFrontendData called...");
+function captureSentimentFrontendData(polarity_confidence, polarity) {
     const textPolarity = document.getElementById("polarity");
     const textPolarityConfidence = document.getElementById("polarity_confidence");
-    // variables formatting
+
     const polarityConfidenceFormat = polarity_confidence.toFixed(3);
     const capitalisePolarity = polarity.charAt(0).toUpperCase() + polarity.slice(1);
 
-    console.log(textPolarity, capitalisePolarity, textPolarityConfidence, polarityConfidenceFormat);
     return { textPolarity, capitalisePolarity, textPolarityConfidence, polarityConfidenceFormat };
 }
 
@@ -157,7 +145,7 @@ function sentimentFrontendData(polarity_confidence, polarity) {
  * @param {variable} polarity_confidence 
  * @param {variable} polarity 
  */
-function classifyFrontendData() {
+function captureClassifyFrontendData() {
     const classifyLabel = document.getElementById("label");
     const classifyConfidence = document.getElementById("classify_confidence");
     return { classifyLabel, classifyConfidence };
@@ -171,9 +159,7 @@ function classifyFrontendData() {
  * @param {the API response data} data 
  */
 const updateSentimentUI = async data => {
-    console.log("updateSentimentUI called...");
     try {
-        // ES6 Destructuring assignment
         const {
             polarity,
             polarity_confidence
@@ -183,7 +169,7 @@ const updateSentimentUI = async data => {
             capitalisePolarity,
             textPolarityConfidence,
             polarityConfidenceFormat
-        } = sentimentFrontendData(polarity_confidence, polarity);
+        } = captureSentimentFrontendData(polarity_confidence, polarity);
         textPolarity.innerHTML = `Text sentiment: ${capitalisePolarity}, `;
         textPolarityConfidence.innerHTML = `Text confidence ${polarityConfidenceFormat}.`;
     } catch (error) {
@@ -201,7 +187,6 @@ const updateSentimentUI = async data => {
  */
 const updateClassifyUI = async data => {
     try {
-        // ES6 Destructuring assignment
         const {
             label,
             confidence
@@ -209,7 +194,7 @@ const updateClassifyUI = async data => {
         const {
             classifyLabel,
             classifyConfidence
-        } = classifyFrontendData();
+        } = captureClassifyFrontendData();
         classifyLabel.innerHTML = `Article Label ${label}, `;
         classifyConfidence.innerHTML = `Article Confidence ${confidence}.`;
     } catch (error) {
@@ -224,7 +209,6 @@ const updateClassifyUI = async data => {
  * @param {the API response data} data 
  */
 const updateEntityUI = async data => {
-    console.log("updateSentimentUI called...");
     try {
         captureEntityFrontendData(data);
     } catch (error) {
