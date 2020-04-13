@@ -3,28 +3,13 @@
 /**
  * SCOPE: 
  * performs a post request to fect the Alyen API response
+ * returns the data from the response
  * extracts JSON from the response and returns it 
  * @param {the API post route in src/server/index.js} url 
  * @param {the user input in frontend via a field} data 
  */
 const postRequest = async(url = "", data = {}) => {
-    const response = await alyenApiCall(url, data);
-    try {
-        const newData = await response.json();
-        return newData;
-    } catch (error) {
-        console.log("error", error);
-    }
-};
-
-/**
- * SCOPE:
- * Fetch Alyen API for every endpoint
- * @param {API route defined in server/index.js} url 
- * @param {data captured from frontend field} data 
- */
-async function alyenApiCall(url, data) {
-    return await fetch(url, {
+    const response = await fetch(url, {
         method: "POST",
         credentials: "same-origin",
         headers: {
@@ -32,11 +17,17 @@ async function alyenApiCall(url, data) {
         },
         body: JSON.stringify(data)
     });
+    try {
+        const newData = await response.json();
+        return newData;
+    } catch (error) {
+        console.log("error", error);
+    }
 }
 
 // ***********************************************************  FETCHING API  *********************************************************** //
 
-// ***********************************************************  API CALLS  *********************************************************** //
+// ***********************************************************  API ENDPOINTS  *********************************************************** //
 
 /**
  * SCOPE: 
@@ -98,7 +89,7 @@ async function entityApi(event) {
     }
 }
 
-// ***********************************************************  API CALLS  *********************************************************** //
+// ***********************************************************  API ENDPOINTS  *********************************************************** //
 
 // ***********************************************************  COLLECT UI DATA  *********************************************************** //
 
@@ -109,12 +100,11 @@ async function entityApi(event) {
  * @param {Variable to contain the API data} data 
  */
 function captureEntityFrontendData(data) {
-    const textOrganization = document.getElementById("organization");
-    const textDate = document.getElementById("date");
-
     const organization = data.entities.organization[0];
     const date = data.entities.date[0];
 
+    const textOrganization = document.getElementById("organization");
+    const textDate = document.getElementById("date");
     textOrganization.innerHTML = `Organization: ${organization}, `;
     textDate.innerHTML = `Date: ${date}.`;
 }
@@ -133,7 +123,6 @@ function captureSentimentFrontendData(polarity_confidence, polarity) {
 
     const polarityConfidenceFormat = polarity_confidence.toFixed(3);
     const capitalisePolarity = polarity.charAt(0).toUpperCase() + polarity.slice(1);
-
     return { textPolarity, capitalisePolarity, textPolarityConfidence, polarityConfidenceFormat };
 }
 
