@@ -159,8 +159,8 @@ const updateSentimentUI = async data => {
             textPolarityConfidence,
             polarityConfidenceFormat
         } = captureSentimentFrontendData(polarity_confidence, polarity);
-        textPolarity.innerHTML = `Text sentiment: ${capitalisePolarity}, `;
-        textPolarityConfidence.innerHTML = `Text confidence ${polarityConfidenceFormat}.`;
+        textPolarity.innerHTML = `Text sentiment: ${ capitalisePolarity},\n `;
+        textPolarityConfidence.innerHTML = `Text confidence: ${ polarityConfidenceFormat}.`;
     } catch (error) {
         const unsupportedText = "The text doesn't have the necessary attributes!\n"
         const sentimentTryAgain = 'Read why at https://docs.aylien.com/textapi/endpoints/?javascript#sentiment-analysis'
@@ -184,8 +184,8 @@ const updateClassifyUI = async data => {
             classifyLabel,
             classifyConfidence
         } = captureClassifyFrontendData();
-        classifyLabel.innerHTML = `Article Label ${label}, `;
-        classifyConfidence.innerHTML = `Article Confidence ${confidence}.`;
+        classifyLabel.innerHTML = `Article Label: ${ label},\n `;
+        classifyConfidence.innerHTML = `Article Confidence: ${ confidence}.`;
     } catch (error) {
         let unsupportedUrl = "The URL doesn't have the necessary attributes!\n"
         let classifyTryAgain = 'Read why at https://docs.aylien.com/textapi/endpoints/?javascript#classification'

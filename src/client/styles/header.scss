@@ -1,5 +1,28 @@
+@import "./master";
+@import "~bootstrap/scss/bootstrap";
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 10px 40px;
+}
+
+h1,
+h2 {
+    font-family: $font-stack;
+    font-size: 3rem;
+    margin: 30px;
+    color: $primary-color-light-bg;
+}
+
+.navbar {
+    border-radius: 0%;
+    margin: 0;
+    position: sticky;
+    &.bg-primary {
+        background-color: $primary-card-body-bg !important;
+        color: $primary-color-text;
+        font-family: $font-stack;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
 }

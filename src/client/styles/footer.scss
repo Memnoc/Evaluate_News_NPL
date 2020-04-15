@@ -1,0 +1,64 @@
+@import "~bootstrap/scss/bootstrap";
+@import "./master";
+#footer-container {
+    width: 100%;
+    height: 70px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.list-group {
+    margin: 0 auto;
+    float: none;
+    width: 30%;
+    padding-bottom: 30px;
+}
+
+.list-group-item:first-child {
+    background-color: transparent;
+    border: solid 1px $accent-color;
+    border-radius: 8px !important;
+    margin-bottom: 10px;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.list-group-item:first-child+.list-group-item {
+    background-color: transparent;
+    border: solid 1px $accent-color;
+    border-radius: 8px !important;
+    margin-bottom: 10px;
+}
+
+.list-group-item+.list-group-item {
+    border-top-width: 1px !important;
+    border-end-end-radius: 8px !important;
+}
+
+.list-group-item:last-child {
+    background-color: transparent;
+    border: solid 1px $accent-color;
+    border-radius: 8px !important;
+}
+
+.page-title {
+    margin: 0 auto;
+    float: none;
+    padding: 10px;
+}
+
+h5.card-title {
+    font-family: "Open Sans", sans-serif;
+    font-size: 2.2rem;
+    color: #CFD8DC;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
+    color: $accent-color;
+}
