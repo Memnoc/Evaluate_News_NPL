@@ -38,4 +38,4 @@ AYLIEN API
 
  # License
 
- This repo is open source software [licensed as MIT] .
+ This repo is open source software [licensed as MIT](https://github.com/Memnoc/Evaluate_News_NPL/blob/master/LICENSE).
