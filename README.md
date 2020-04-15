@@ -11,8 +11,8 @@ process and analyze large amounts of natural language data.
 > This tool allows you to extract sentiment, classification and entity data from any given article or text (e.g. comments, tweets, documents, articles, etc.).
 > The tool is powered by a third party API called Alyen API (check the credit section for more info).
 
-[insert text or a url](https://i.imgur.com/4H0vqG3.png)
-[get the results](https://i.imgur.com/1X2TZwl.png)
+![alt text](https://i.imgur.com/4H0vqG3.png)
+![alt text](https://i.imgur.com/1X2TZwl.png)
 
 ## How do I install it?
 
