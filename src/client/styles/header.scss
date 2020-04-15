@@ -24,5 +24,8 @@ h2 {
         font-family: $font-stack;
         font-weight: 700;
         font-size: 1.5rem;
+        &.navbar-dark .navbar-text {
+            color: $primary-color-text;
+        }
     }
 }
